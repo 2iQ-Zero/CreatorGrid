@@ -1,144 +1,94 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <title>D.Visual AI</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- ستايل الموقع -->
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0f0f0f;
-            color: white;
-            text-align: center;
-        }
-
-        header {
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-        }
-
-        section {
-            padding: 30px 20px;
-        }
-
-        textarea {
-            width: 90%;
-            max-width: 600px;
-            height: 120px;
-            margin: 10px 0;
-            padding: 12px;
-            border-radius: 12px;
-            border: none;
-            font-size: 16px;
-        }
-
-        button {
-            padding: 15px 35px;
-            font-size: 18px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            background: #ff9800;
-            color: black;
-            margin-top: 20px;
-        }
-
-        button:hover {
-            background: #ffc107;
-        }
-
-        footer {
-            margin-top: 40px;
-            padding: 20px;
-            font-size: 14px;
-            color: #aaa;
-        }
-
-        #threeContainer {
-            width: 100%;
-            height: 400px;
-            margin-top: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>D.Visual AI Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body { margin:0; font-family: Arial, sans-serif; background:#0f0f0f; color:white; text-align:center; }
+header { padding:40px 20px; background:linear-gradient(135deg,#6a11cb,#2575fc); }
+section { padding:30px 20px; }
+textarea { width:90%; max-width:600px; height:120px; margin:10px 0; padding:12px; border-radius:12px; border:none; font-size:16px; }
+button { padding:15px 35px; font-size:18px; border:none; border-radius:30px; cursor:pointer; background:#ff9800; color:black; margin-top:20px; }
+button:hover { background:#ffc107; }
+#threeContainer { width:100%; height:400px; margin-top:20px; }
+</style>
 </head>
 <body>
 
 <header>
-    <h1>D.Visual AI</h1>
-    <p>منصة ذكاء اصطناعي لإنشاء شخصيات 3D وفيديوهات متحركة</p>
+<h1>D.Visual AI Studio</h1>
+<p>منصة ذكاء اصطناعي لتوليد شخصيات 3D وفيديوهات متحركة</p>
 </header>
 
 <section>
-    <h2>🧠 برومت الشخصية</h2>
-    <textarea id="characterPrompt" placeholder="اكتب وصف الشخصية هنا..."></textarea>
+<h2>🧠 برومت الشخصية</h2>
+<textarea id="characterPrompt" placeholder="اكتب وصف الشخصية هنا..."></textarea>
 
-    <h2>🎬 برومت الفيديو</h2>
-    <textarea id="videoPrompt" placeholder="اكتب وصف الحركة والمشهد هنا..."></textarea>
+<h2>🎬 برومت الفيديو</h2>
+<textarea id="videoPrompt" placeholder="اكتب وصف الحركة والمشهد هنا..."></textarea>
 
-    <br>
-    <button onclick="startAI()">ابدأ الإنشاء</button>
+<br>
+<button onclick="startAI()">ابدأ الإنشاء</button>
 
-    <div id="threeContainer"></div>
+<div id="threeContainer"></div>
 </section>
 
-<footer>
-    © 2026 D.Visual AI
-</footer>
+<footer>© 2026 D.Visual AI</footer>
 
-<!-- مكتبات Three.js لعرض الشخصيات 3D -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-// دالة تشغيل AI
+// دالة إرسال البرومت لمولد صور AI مجاني
 function startAI() {
     const character = document.getElementById("characterPrompt").value.trim();
     const video = document.getElementById("videoPrompt").value.trim();
 
-    if (!character || !video) {
+    if(!character || !video) {
         alert("⚠️ من فضلك اكتب برومت الشخصية وبرومت الفيديو");
         return;
     }
 
-    // فتح موقع AI مجاني لتوليد الصور (Stable Diffusion مثال)
+    // فتح موقع AI لتوليد الصورة
     const aiUrl = "https://stablediffusionweb.com/?prompt=" + encodeURIComponent(character);
     window.open(aiUrl, "_blank");
 
-    alert(
-        "✅ تم إرسال برومت الشخصية لمولد الصور!\n" +
-        "الخطوة الجاية: تجهيز 3D والتحريك."
-    );
-}
+    // توليد 4 روابط وهمية لكل زاوية (تجريبي للعرض)
+    const angles = ["front","side","back","45deg"];
+    angles.forEach((angle, i)=>{
+        const img = document.createElement("img");
+        img.src = "https://via.placeholder.com/200x300.png?text=" + encodeURIComponent(character + " " + angle);
+        img.style.margin="10px";
+        img.alt = angle;
+        document.getElementById("threeContainer").appendChild(img);
+    });
 
-// دالة عرض شخصية 3D بعد ما تولدها وتحملها (مثال)
+    alert("✅ تم إرسال البرومت للـ AI، وستظهر صور الشخصية لكل زاوية أسفل الصفحة!");
+});
+
+// مثال جاهز لتحميل شخصية 3D حقيقية (بعد ما تولدها وتحملها)
 function load3DCharacter(url) {
     const container = document.getElementById("threeContainer");
-
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, container.clientWidth/container.clientHeight, 0.1, 1000);
-
-    const renderer = new THREE.WebGLRenderer({antialias: true, alpha:true});
+    const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.innerHTML = "";
     container.appendChild(renderer.domElement);
 
     const loader = new THREE.GLTFLoader();
-    loader.load(url, function(gltf) {
+    loader.load(url, function(gltf){
         scene.add(gltf.scene);
         camera.position.z = 5;
 
-        const animate = function() {
+        const animate = function(){
             requestAnimationFrame(animate);
             gltf.scene.rotation.y += 0.01;
-            renderer.render(scene, camera);
+            renderer.render(scene,camera);
         };
         animate();
-    }, undefined, function(error){
-        console.error(error);
-    });
+    }, undefined, function(error){ console.error(error); });
 }
 </script>
 
