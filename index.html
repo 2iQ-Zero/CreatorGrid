@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>D.Visual AI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         body {
             margin: 0;
@@ -12,30 +13,47 @@
             color: white;
             text-align: center;
         }
+
         header {
             padding: 40px 20px;
             background: linear-gradient(135deg, #6a11cb, #2575fc);
         }
+
         section {
             padding: 30px 20px;
         }
+
         textarea {
             width: 90%;
             max-width: 600px;
             height: 120px;
             margin: 10px 0;
-            padding: 10px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 12px;
             border: none;
+            font-size: 16px;
         }
+
         button {
-            padding: 15px 30px;
+            padding: 15px 35px;
             font-size: 18px;
             border: none;
             border-radius: 30px;
             cursor: pointer;
             background: #ff9800;
             color: black;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #ffc107;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 14px;
+            color: #aaa;
         }
     </style>
 </head>
@@ -48,74 +66,37 @@
 
 <section>
     <h2>🧠 برومت الشخصية</h2>
-    <textarea placeholder="اكتب وصف الشخصية هنا..."></textarea>
+    <textarea id="characterPrompt" placeholder="اكتب وصف الشخصية هنا..."></textarea>
 
     <h2>🎬 برومت الفيديو</h2>
-    <textarea placeholder="اكتب وصف الحركة والمشهد هنا..."></textarea>
+    <textarea id="videoPrompt" placeholder="اكتب وصف الحركة والمشهد هنا..."></textarea>
 
-    <br><br>
-    <button>ابدأ الإنشاء</button>
+    <br>
+    <button onclick="startAI()">ابدأ الإنشاء</button>
 </section>
 
-</body>
-                                                             </html><!DOCTYPE html>
-<html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <title>D.Visual AI</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0f0f0f;
-            color: white;
-            text-align: center;
-        }
-        header {
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-        }
-        section {
-            padding: 30px 20px;
-        }
-        textarea {
-            width: 90%;
-            max-width: 600px;
-            height: 120px;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 10px;
-            border: none;
-        }
-        button {
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            background: #ff9800;
-            color: black;
-        }
-    </style>
-</head>
-<body>
+<footer>
+    © 2026 D.Visual AI
+</footer>
 
-<header>
-    <h1>D.Visual AI</h1>
-    <p>منصة ذكاء اصطناعي لإنشاء شخصيات 3D وفيديوهات متحركة</p>
-</header>
+<script>
+function startAI() {
+    const character = document.getElementById("characterPrompt").value.trim();
+    const video = document.getElementById("videoPrompt").value.trim();
 
-<section>
-    <h2>🧠 برومت الشخصية</h2>
-    <textarea placeholder="اكتب وصف الشخصية هنا..."></textarea>
+    if (!character || !video) {
+        alert("⚠️ من فضلك اكتب برومت الشخصية وبرومت الفيديو");
+        return;
+    }
 
-    <h2>🎬 برومت الفيديو</h2>
-    <textarea placeholder="اكتب وصف الحركة والمشهد هنا..."></textarea>
+    alert(
+        "🔥 تمام، استقبلت البرومتات!\n\n" +
+        "🧠 برومت الشخصية:\n" + character + "\n\n" +
+        "🎬 برومت الفيديو:\n" + video + "\n\n" +
+        "المرحلة الجاية: ربط الذكاء الاصطناعي الحقيقي"
+    );
+}
+</script>
 
-    <br><br>
-    <button>ابدأ الإنشاء</button>
-</section>
-<script src="script.js"></script>
 </body>
 </html>
