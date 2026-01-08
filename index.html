@@ -89,6 +89,20 @@ function startAI() {
         return;
     }
 
+    // فتح موقع Stable Diffusion مع البرومت
+    const aiUrl = "https://stablediffusionweb.com/?prompt=" + encodeURIComponent(character);
+    window.open(aiUrl, "_blank");
+
+    alert(
+        "✅ تم إرسال برومت الشخصية لمولد الصور!\n" +
+        "الخطوة الجاية: تجهيز 3D والتحريك."
+    );
+}
+    if (!character || !video) {
+        alert("⚠️ من فضلك اكتب برومت الشخصية وبرومت الفيديو");
+        return;
+    }
+
     alert(
         "🔥 تمام، استقبلت البرومتات!\n\n" +
         "🧠 برومت الشخصية:\n" + character + "\n\n" +
