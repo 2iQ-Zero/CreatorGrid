@@ -4,46 +4,91 @@
 <meta charset="UTF-8">
 <title>D.Visual AI Studio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body { margin:0; font-family: Arial, sans-serif; background:#0f0f0f; color:white; text-align:center; }
-header { padding:40px 20px; background:linear-gradient(135deg,#6a11cb,#2575fc); }
-section { padding:30px 20px; }
-textarea { width:90%; max-width:600px; height:120px; margin:10px 0; padding:12px; border-radius:12px; border:none; font-size:16px; }
-button { padding:15px 35px; font-size:18px; border:none; border-radius:30px; cursor:pointer; background:#ff9800; color:black; margin-top:20px; }
-button:hover { background:#ffc107; }
-#aiImageContainer { margin-top:20px; }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: white;
+    text-align: center;
+}
+header {
+    padding: 40px 20px;
+    background: linear-gradient(135deg,#6a11cb,#2575fc);
+}
+section {
+    padding: 30px 20px;
+}
+textarea {
+    width: 90%;
+    max-width: 600px;
+    height: 120px;
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+}
+button {
+    padding: 15px 35px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: #ff9800;
+    color: black;
+    margin-top: 20px;
+}
+button:hover {
+    background: #ffc107;
+}
+#aiImageContainer {
+    margin-top: 25px;
+}
+#aiImageContainer img {
+    margin-top: 15px;
+    border-radius: 14px;
+}
+footer {
+    padding: 15px;
+    opacity: 0.6;
+    font-size: 14px;
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<h1>D.Visual AI Studio</h1>
-<p>منصة ذكاء اصطناعي لتوليد شخصيات 3D وفيديوهات متحركة</p>
+    <h1>D.Visual AI Studio</h1>
+    <p>منصة ذكاء اصطناعي لتوليد شخصيات وصور باستخدام البرومت</p>
 </header>
 
 <section>
-<h2>🧠 برومت الشخصية</h2>
-<textarea id="characterPrompt" placeholder="اكتب وصف الشخصية هنا..."></textarea>
+    <h2>🧠 برومت الشخصية</h2>
+    <textarea id="characterPrompt" placeholder="اكتب وصف الشخصية هنا..."></textarea>
 
-<h2>🎬 برومت الفيديو</h2>
-<textarea id="videoPrompt" placeholder="اكتب وصف الحركة والمشهد هنا..."></textarea>
+    <h2>🎬 برومت الفيديو</h2>
+    <textarea id="videoPrompt" placeholder="اكتب وصف الحركة أو المشهد هنا..."></textarea>
 
-<br>
-<button onclick="startAI()">ابدأ الإنشاء</button>
+    <br>
+    <button onclick="startAI()">ابدأ الإنشاء</button>
 
-<div id="aiImageContainer"></div>
+    <div id="aiImageContainer"></div>
 </section>
 
-<footer>© 2026 D.Visual AI</footer>
+<footer>
+    © 2026 D.Visual AI
+</footer>
 
 <script>
-// دالة توليد صورة داخل الموقع بدون فتح مواقع ثانية
 async function startAI() {
     const character = document.getElementById("characterPrompt").value.trim();
     const video = document.getElementById("videoPrompt").value.trim();
 
-    if(!character || !video){
-        alert("⚠️ من فضلك اكتب برومت الشخصية وبرومت الفيديو");
+    if (!character || !video) {
+        alert("من فضلك اكتب برومت الشخصية وبرومت الفيديو");
         return;
     }
 
@@ -51,26 +96,171 @@ async function startAI() {
     container.innerHTML = "⏳ جاري توليد الصورة...";
 
     try {
-        // مثال API تجريبي مجاني (Craiyon)
-        const response = await fetch("https://api.craiyon.com/generate", {
-            method: "POST",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify({prompt: character})
-        });
+        const response = await fetch(
+            "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2",
+            {
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer <!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>D.Visual AI Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        const data = await response.json();
-        container.innerHTML = ""; // مسح النص القديم
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: white;
+    text-align: center;
+}
+header {
+    padding: 40px 20px;
+    background: linear-gradient(135deg,#6a11cb,#2575fc);
+}
+section {
+    padding: 30px 20px;
+}
+textarea {
+    width: 90%;
+    max-width: 600px;
+    height: 120px;
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+}
+button {
+    padding: 15px 35px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: #ff9800;
+    color: black;
+    margin-top: 20px;
+}
+button:hover {
+    background: #ffc107;
+}
+#aiImageContainer {
+    margin-top: 25px;
+}
+#aiImageContainer img {
+    margin-top: 15px;
+    border-radius: 14px;
+}
+footer {
+    padding: 15px;
+    opacity: 0.6;
+    font-size: 14px;
+}
+</style>
+</head>
 
-        // عرض أول صورة
+<body>
+
+<header>
+    <h1>D.Visual AI Studio</h1>
+    <p>منصة ذكاء اصطناعي لتوليد شخصيات وصور باستخدام البرومت</p>
+</header>
+
+<section>
+    <h2>🧠 برومت الشخصية</h2>
+    <textarea id="characterPrompt" placeholder="اكتب وصف الشخصية هنا..."></textarea>
+
+    <h2>🎬 برومت الفيديو</h2>
+    <textarea id="videoPrompt" placeholder="اكتب وصف الحركة أو المشهد هنا..."></textarea>
+
+    <br>
+    <button onclick="startAI()">ابدأ الإنشاء</button>
+
+    <div id="aiImageContainer"></div>
+</section>
+
+<footer>
+    © 2026 D.Visual AI
+</footer>
+
+<script>
+async function startAI() {
+    const character = document.getElementById("characterPrompt").value.trim();
+    const video = document.getElementById("videoPrompt").value.trim();
+
+    if (!character || !video) {
+        alert("من فضلك اكتب برومت الشخصية وبرومت الفيديو");
+        return;
+    }
+
+    const container = document.getElementById("aiImageContainer");
+    container.innerHTML = "⏳ جاري توليد الصورة...";
+
+    try {
+        const response = await fetch(
+            "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2",
+            {
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer hf_ضع_التوكن_هنا",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    inputs: character
+                })
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("فشل توليد الصورة");
+        }
+
+        const blob = await response.blob();
+        const imgURL = URL.createObjectURL(blob);
+
+        container.innerHTML = "";
         const img = document.createElement("img");
-        img.src = data.images[0];
-        img.style.width = "300px";
-        img.style.borderRadius = "12px";
+        img.src = imgURL;
+        img.style.width = "320px";
+
         container.appendChild(img);
 
-    } catch(e){
-        container.innerHTML = "❌ حدث خطأ أثناء توليد الصورة";
-        console.error(e);
+    } catch (error) {
+        container.innerHTML = "❌ حصل خطأ، استنى دقيقة وجرب تاني";
+        console.error(error);
+    }
+}
+</script>
+
+</body>
+</html>",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    inputs: character
+                })
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("فشل توليد الصورة");
+        }
+
+        const blob = await response.blob();
+        const imgURL = URL.createObjectURL(blob);
+
+        container.innerHTML = "";
+        const img = document.createElement("img");
+        img.src = imgURL;
+        img.style.width = "320px";
+
+        container.appendChild(img);
+
+    } catch (error) {
+        container.innerHTML = "❌ حصل خطأ، استنى دقيقة وجرب تاني";
+        console.error(error);
     }
 }
 </script>
