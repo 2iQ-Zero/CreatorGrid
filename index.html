@@ -74,7 +74,7 @@ footer {
     <textarea id="videoPrompt" placeholder="اكتب وصف الحركة أو المشهد هنا..."></textarea>
 
     <br>
-    <button onclick="startAI()">ابدأ الإنشاء</button>
+    <button id="generateBtn">ابدأ الإنشاء</button>
 
     <div id="aiImageContainer"></div>
 </section>
@@ -84,31 +84,29 @@ footer {
 </footer>
 
 <script>
-async function startAI() {
+document.getElementById("generateBtn").addEventListener("click", async function() {
     const character = document.getElementById("characterPrompt").value.trim();
     const video = document.getElementById("videoPrompt").value.trim();
+    const container = document.getElementById("aiImageContainer");
 
     if (!character || !video) {
         alert("من فضلك اكتب برومت الشخصية وبرومت الفيديو");
         return;
     }
 
-    const container = document.getElementById("aiImageContainer");
     container.innerHTML = "⏳ جاري توليد الصورة...";
 
     try {
-        // استخدم التوكن بتاعك هنا
+        // التوكن مشحط هنا، استبدله بالتوكن عند التشغيل المحلي
         const response = await fetch(
             "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2",
             {
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer hf_ضع_التوكن_هنا",
+                    "Authorization": "Bearer ضع_التوكن_هنا",
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                    inputs: character
-                })
+                body: JSON.stringify({ inputs: character })
             }
         );
 
@@ -126,7 +124,7 @@ async function startAI() {
         container.innerHTML = "❌ حصل خطأ، استنى دقيقة وجرب تاني";
         console.error(error);
     }
-}
+});
 </script>
 
 </body>
